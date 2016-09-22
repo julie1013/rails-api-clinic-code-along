@@ -15,3 +15,6 @@ curl --include --request POST http://localhost:3000/patients \
         "sickness": "Runs too fast"
       }
     }'
+
+  curl --include --request DELETE http://localhost:3000/patients/2 \
+    --header "Content-Type: application/json"

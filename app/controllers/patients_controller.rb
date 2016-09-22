@@ -1,5 +1,5 @@
 class PatientsController < ApplicationController
-  before_action :set_patient, only: [:show, :update]
+  before_action :set_patient, only: [:show, :update, :destroy]
 
   def index
     @patients = Patient.all
@@ -23,6 +23,14 @@ class PatientsController < ApplicationController
     if @patient.update(patient_params)
       head :no_content
       render json: @patient, status: :created
+    else
+      render json: @patient.errors, status: :unprocessable_entity
+    end
+  end
+
+  def destroy
+    if @patient.destroy
+      head :no_content
     else
       render json: @patient.errors, status: :unprocessable_entity
     end
